@@ -1,0 +1,27 @@
+{
+  "name": "projet-normandie/email-bundle",
+  "description": "Normandie EmailBundle",
+  "type": "symfony-bundle",
+  "license": "Apache License v2",
+  "authors": [
+    {
+      "name": "Verlhac Gaëtan",
+      "email": "viviengaetan69@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.9",
+    "symfony/form": "~3.0",
+    "symfony/framework-bundle": "~3.0",
+    "symfony/security-bundle": "~3.0",
+    "symfony/twig-bundle": "~3.0",
+    "doctrine/orm": "^2.5",
+    "doctrine/doctrine-bundle": "~1.6"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.0"
+  },
+  "autoload": {
+    "psr-4": { "ProjetNormandie\\UserBundle\\": "" }
+  }
+}

@@ -1,0 +1,4 @@
+services:
+#    projet_normandie_email.example:
+#        class: ProjetNormandie\EmailBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
