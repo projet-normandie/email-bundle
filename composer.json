@@ -2,7 +2,7 @@
   "name": "projet-normandie/email-bundle",
   "description": "Normandie EmailBundle",
   "type": "symfony-bundle",
-  "license": "Apache License v2",
+  "license": "Apache-2.0",
   "authors": [
     {
       "name": "Verlhac Gaëtan",

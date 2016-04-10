@@ -7,11 +7,28 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Email
  *
- * @ORM\Table(name="email", indexes={@ORM\Index(name="IDX_E7927C74466F2FFC", columns={"target"})})
+ * @ORM\Table(name="email")
  * @ORM\Entity
  */
 class Email
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="emailId", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $emailId;
+
+    /**
+     * Stored as User can change its mail address.
+     * @var string
+     *
+     * @ORM\Column(name="targetMail", type="string", length=255, nullable=false)
+     */
+    private $targetMail;
+
     /**
      * @var string
      *
@@ -32,6 +49,13 @@ class Email
      * @ORM\Column(name="bodyHtml", type="text", nullable=false)
      */
     private $bodyHtml;
+
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="attachments", type="json_array", nullable=true)
+     */
+    private $attachments;
 
     /**
      * @var boolean
@@ -55,30 +79,19 @@ class Email
     private $creationDate;
 
     /**
-     * @var array
+     * @var \ProjetNormandie\EmailBundle\Entity\UserInterface
      *
-     * @ORM\Column(name="attachments", type="json_array", nullable=true)
-     */
-    private $attachments;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="emailId", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $emailId;
-
-    /**
-     * @var \ProjetNormandie\UserBundle\Entity\User
-     *
-     * @ORM\ManyToOne(targetEntity="ProjetNormandie\UserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="ProjetNormandie\EmailBundle\Entity\UserInterface")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="target", referencedColumnName="userId")
      * })
      */
     private $target;
+
+    public function __construct()
+    {
+        $this->creationDate = new \DateTime();
+    }
 
     /**
      * @return string
@@ -225,7 +238,7 @@ class Email
     }
 
     /**
-     * @return \ProjetNormandie\UserBundle\Entity\Member
+     * @return \ProjetNormandie\EmailBundle\Entity\UserInterface
      */
     public function getTarget()
     {
@@ -233,12 +246,30 @@ class Email
     }
 
     /**
-     * @param \ProjetNormandie\UserBundle\Entity\Member $target
+     * @param \ProjetNormandie\EmailBundle\Entity\UserInterface $target
      * @return Email
      */
     public function setTarget($target)
     {
         $this->target = $target;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTargetMail()
+    {
+        return $this->targetMail;
+    }
+
+    /**
+     * @param string $targetMail
+     * @return Email
+     */
+    public function setTargetMail($targetMail)
+    {
+        $this->targetMail = $targetMail;
         return $this;
     }
 }
