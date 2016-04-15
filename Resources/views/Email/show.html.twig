@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% trans_default_domain 'ProjetNormandieEmailBundle' %}
+
+{% block body %}
+    <h1 id="emailSubject">{{ email.subject }}</h1>
+
+    <div id="emailData">
+        {{ email.targetMail }}
+        {{ email.sentDate }}
+    </div>
+
+    <div id="emailHtmlContent">{{ email.bodyHtml|raw }}</div>
+    <div id="emailTextContent">{{ email.bodyText }}</div>
+{% endblock %}

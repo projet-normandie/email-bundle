@@ -2,16 +2,29 @@
 
 namespace ProjetNormandie\EmailBundle\Controller;
 
+use ProjetNormandie\EmailBundle\Entity\Email;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class EmailController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/{emailId}", name="email_display")
+     *
+     * @param \ProjetNormandie\EmailBundle\Entity\Email $email
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexAction()
+    public function showAction(Email $email)
     {
-        return $this->render('ProjetNormandieEmailBundle:Email:index.html.twig');
+        $user = $this->getUser();
+        if ($email->getTarget()->getUserId() !== $user->getUserId()) {
+            return new AccessDeniedException();
+        }
+
+        return $this->render(
+            'ProjetNormandieEmailBundle:Email:show.html.twig',
+            ["email" => $email]
+        );
     }
 }

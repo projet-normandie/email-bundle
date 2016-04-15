@@ -1,4 +1,6 @@
 services:
-#    projet_normandie_email.example:
-#        class: ProjetNormandie\EmailBundle\Example
-#        arguments: ["@service_id", "plain_value", %parameter%]
+    projet_normandie_email.plugin:
+        class: ProjetNormandie\EmailBundle\Plugin\SwiftMailerDatabaseLogger
+        arguments: ["@doctrine.orm.default_entity_manager"]
+        tags:
+            - { name: swiftmailer.default.plugin }
