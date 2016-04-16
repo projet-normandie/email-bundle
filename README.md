@@ -51,8 +51,11 @@ class AppKernel extends Kernel
 Step 3: Configuration
 ---------------------
 
+### Database
+
 In order to link your User entity to this module you should add the following configuration:
 (Replace ProjetNormandie\UserBundle\Entity\User with your user class).
+
 [Official documentation](http://symfony.com/doc/current/cookbook/doctrine/resolve_target_entity.html)
 
 ```yaml
@@ -63,6 +66,19 @@ doctrine:
         resolve_target_entities:
             ProjetNormandie\EmailBundle\Entity\UserInterface: ProjetNormandie\UserBundle\Entity\User
 ```
+
+After resolving the entity you can update your database schema.
+
+### Routing
+
+```yaml
+projet_normandie_email:
+    resource: "@ProjetNormandieEmailBundle/Controller/"
+    type:     annotation
+    prefix:   /email/
+```
+
+### Module Configuration
 
 The from has to be set globally.
 
