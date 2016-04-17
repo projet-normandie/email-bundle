@@ -12,6 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Email
 {
+    const STATE_FAILED = 0;
+    const STATE_SUCCES = 1;
     /**
      * @var integer
      *
@@ -22,12 +24,19 @@ class Email
     private $emailId;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="from", type="string", length=255, nullable=false)
+     */
+    private $from;
+
+    /**
      * Stored as User can change its mail address.
      * @var string
      *
-     * @ORM\Column(name="targetMail", type="string", length=255, nullable=false)
+     * @ORM\Column(name="to", type="string", length=255, nullable=false)
      */
-    private $targetMail;
+    private $to;
 
     /**
      * @var string
@@ -39,7 +48,7 @@ class Email
     /**
      * @var string
      *
-     * @ORM\Column(name="bodyText", type="text", nullable=false)
+     * @ORM\Column(name="bodyText", type="text", nullable=true)
      */
     private $bodyText;
 
@@ -91,6 +100,7 @@ class Email
     public function __construct()
     {
         $this->creationDate = new \DateTime();
+        $this->sentState = false;
     }
 
     /**
@@ -260,7 +270,7 @@ class Email
      */
     public function getTargetMail()
     {
-        return $this->targetMail;
+        return $this->to;
     }
 
     /**
@@ -269,7 +279,25 @@ class Email
      */
     public function setTargetMail($targetMail)
     {
-        $this->targetMail = $targetMail;
+        $this->to = $targetMail;
         return $this;
+    }
+
+    /**
+     * @param mixed $from
+     * @return Email
+     */
+    public function setFrom($from)
+    {
+        $this->from = $from;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFrom()
+    {
+        return $this->from;
     }
 }

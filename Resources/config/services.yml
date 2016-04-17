@@ -1,6 +1,6 @@
 services:
-    projet_normandie_email.plugin:
-        class: ProjetNormandie\EmailBundle\Plugin\SwiftMailerDatabaseLogger
-        arguments: ["@doctrine.orm.default_entity_manager"]
-        tags:
-            - { name: swiftmailer.default.plugin }
+    projet_normandie_email.swiftmailer.mapper:
+        class: ProjetNormandie\EmailBundle\Mapper\SwiftMailerMapper
+    projet_normandie_email.mailer:
+        class: ProjetNormandie\EmailBundle\Service\Mailer
+        arguments: ["@swiftmailer.mailer.default", "@projet_normandie_email.swiftmailer.mapper", "%projetnormandie_email.from%"]
