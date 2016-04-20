@@ -26,7 +26,7 @@ class Email
     /**
      * @var string
      *
-     * @ORM\Column(name="from", type="string", length=255, nullable=false)
+     * @ORM\Column(name="emailFrom", type="string", length=255, nullable=false)
      */
     private $from;
 
@@ -34,7 +34,7 @@ class Email
      * Stored as User can change its mail address.
      * @var string
      *
-     * @ORM\Column(name="to", type="string", length=255, nullable=false)
+     * @ORM\Column(name="emailTo", type="string", length=255, nullable=false)
      */
     private $to;
 

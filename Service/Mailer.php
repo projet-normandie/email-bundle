@@ -34,7 +34,7 @@ class Mailer
      */
     public function send(Email $email)
     {
-        if (null !== $email->getFrom()) {
+        if (null === $email->getFrom()) {
             $email->setFrom($this->from);
         }
         $message = $this->mapper->fromEmail($email);

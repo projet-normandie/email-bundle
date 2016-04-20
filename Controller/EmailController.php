@@ -3,8 +3,8 @@
 namespace ProjetNormandie\EmailBundle\Controller;
 
 use ProjetNormandie\EmailBundle\Entity\Email;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class EmailController extends Controller
