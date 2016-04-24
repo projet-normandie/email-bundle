@@ -86,3 +86,43 @@ The from has to be set globally.
 projet_normandie_email:
     from: "projetnormandie@projetnormandie.com"
 ```
+
+Note that the from can be overwritten when constructing the mail.
+
+### Module Usage
+
+Example of usage (taken from [UserBundle](https://github.com/projet-normandie/UserBundle)):
+
+```php
+use ProjetNormandie\EmailBundle\Entity\Email;
+
+$mailer = $this->get('projet_normandie_email.mailer');
+
+$mail = new Email();
+$mail
+    //->setFrom('test@abc.com') // Here you override the global from
+    ->setTarget($user)
+    ->setTargetMail($user->getEmail())
+    ->setSubject(
+        $this->get('translator')->trans('subject.title.email-register', null, 'ProjetNormandieUserBundle')
+    )
+    ->setBodyHtml(
+        $this->renderView(
+            'ProjetNormandieUserBundle:registration/mail:email-register.html.twig',
+            ['token' => $user->getToken()]
+        )
+    )
+    ->setBodyText(
+        $this->renderView(
+            'ProjetNormandieUserBundle:registration/mail:email-register.txt.twig',
+            ['token' => $user->getToken()]
+        )
+    );
+
+$mailer->send($mail);
+
+$em = $this->getDoctrine()->getManager();
+$em->persist($user); // The user must be persisted before the mail.
+$em->persist($mail);
+$em->flush();
+```
