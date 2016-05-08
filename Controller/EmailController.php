@@ -7,6 +7,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
+/**
+ * Controller used to manage email contents in the public part of the site.
+ */
 class EmailController extends Controller
 {
     /**

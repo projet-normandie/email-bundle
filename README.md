@@ -75,7 +75,11 @@ After resolving the entity you can update your database schema.
 projet_normandie_email:
     resource: "@ProjetNormandieEmailBundle/Controller/"
     type:     annotation
-    prefix:   /email/
+    prefix:   /{_locale}/email
+    requirements:
+        _locale: '%app_locales%'
+    defaults:
+        _locale: '%locale%'
 ```
 
 ### Module Configuration
