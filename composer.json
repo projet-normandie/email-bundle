@@ -23,6 +23,6 @@
     "phpunit/phpunit": "~4.0"
   },
   "autoload": {
-    "psr-4": { "ProjetNormandie\\UserBundle\\": "" }
+    "psr-4": { "ProjetNormandie\\EmailBundle\\": "" }
   }
 }
