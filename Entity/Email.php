@@ -92,7 +92,7 @@ class Email
      *
      * @ORM\ManyToOne(targetEntity="ProjetNormandie\EmailBundle\Entity\UserInterface")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="target", referencedColumnName="userId")
+     *   @ORM\JoinColumn(name="target", referencedColumnName="id")
      * })
      */
     private $target;

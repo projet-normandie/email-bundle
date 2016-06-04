@@ -21,7 +21,7 @@ class EmailController extends Controller
     public function showAction(Email $email)
     {
         $user = $this->getUser();
-        if ($email->getTarget()->getUserId() !== $user->getUserId()) {
+        if ($email->getTarget()->getId() !== $user->getUserId()) {
             return new AccessDeniedException();
         }
 
