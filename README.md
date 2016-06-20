@@ -64,7 +64,7 @@ doctrine:
     orm:
         ...
         resolve_target_entities:
-            ProjetNormandie\EmailBundle\Entity\UserInterface: ProjetNormandie\UserBundle\Entity\User
+            ProjetNormandie\EmailBundle\Entity\UserInterface: AppBundle\Entity\User
 ```
 
 After resolving the entity you can update your database schema.
