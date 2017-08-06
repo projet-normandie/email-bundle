@@ -4,6 +4,9 @@ namespace ProjetNormandie\EmailBundle\Mapper;
 
 use ProjetNormandie\EmailBundle\Entity\Email;
 
+/**
+ * Mapper class upon the Swift_Mailer to send Swift_Messages.
+ */
 class SwiftMailerMapper
 {
     /**

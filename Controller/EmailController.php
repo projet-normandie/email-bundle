@@ -17,6 +17,7 @@ class EmailController extends Controller
      *
      * @param \ProjetNormandie\EmailBundle\Entity\Email $email
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \LogicException When missing the security token.
      */
     public function showAction(Email $email)
     {

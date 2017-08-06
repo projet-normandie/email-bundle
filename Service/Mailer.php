@@ -5,6 +5,9 @@ namespace ProjetNormandie\EmailBundle\Service;
 use ProjetNormandie\EmailBundle\Entity\Email;
 use ProjetNormandie\EmailBundle\Mapper\SwiftMailerMapper;
 
+/**
+ * Proxy to use the Swift_Mailer with the user class SwiftMailerMapper.
+ */
 class Mailer
 {
     /** @var \Swift_Mailer */

@@ -14,6 +14,7 @@ class Configuration implements ConfigurationInterface
 {
     /**
      * {@inheritdoc}
+     * @throws \RuntimeException When the node type is not supported.
      */
     public function getConfigTreeBuilder()
     {

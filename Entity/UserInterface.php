@@ -2,6 +2,9 @@
 
 namespace ProjetNormandie\EmailBundle\Entity;
 
+/**
+ * Interface that defines the rules that must respect the User objects instances.
+ */
 interface UserInterface
 {
     /**

@@ -16,6 +16,7 @@ class ProjetNormandieEmailExtension extends Extension
 {
     /**
      * {@inheritdoc}
+     * @throws \Exception When Yaml parser goes wrong.
      */
     public function load(array $configs, ContainerBuilder $container)
     {
