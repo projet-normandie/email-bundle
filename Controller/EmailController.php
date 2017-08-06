@@ -27,7 +27,7 @@ class EmailController extends Controller
 
         return $this->render(
             'ProjetNormandieEmailBundle:Email:show.html.twig',
-            ["email" => $email]
+            ['email' => $email]
         );
     }
 }
