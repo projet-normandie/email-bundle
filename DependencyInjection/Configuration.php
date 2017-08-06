@@ -20,6 +20,7 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('projet_normandie_email');
 
+        /** @noinspection NullPointerExceptionInspection This is standard definition. */
         $rootNode
             ->children()
                 ->scalarNode('from')->isRequired()->end()
