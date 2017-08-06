@@ -97,6 +97,9 @@ class Email
      */
     private $target;
 
+    /**
+     * Email Constructor.
+     */
     public function __construct()
     {
         $this->creationDate = new \DateTime();
