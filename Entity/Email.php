@@ -13,7 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Email
 {
     const STATE_FAILED = 0;
-    const STATE_SUCCES = 1;
+    const STATE_SUCCESS = 1;
+
     /**
      * @var integer
      *
