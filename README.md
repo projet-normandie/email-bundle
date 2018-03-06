@@ -1,7 +1,7 @@
 ProjetNormandieEmailBundle
 =========================
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/98c86826-7de7-422d-ae2c-fc92662b02ae/mini.png)](https://insight.sensiolabs.com/projects/98c86826-7de7-422d-ae2c-fc92662b02ae)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/projet-normandie/EmailBundle/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/projet-normandie/EmailBundle/?branch=develop)
 
 Installation
 ============
@@ -38,7 +38,7 @@ class AppKernel extends Kernel
         $bundles = array(
             // ...
 
-            new ProjetNormandie\UserBundle\ProjetNormandieEmailBundle(),
+            new ProjetNormandie\EmailBundle\ProjetNormandieEmailBundle(),
         );
 
         // ...
@@ -126,7 +126,7 @@ $mail
 $mailer->send($mail);
 
 $em = $this->getDoctrine()->getManager();
-$em->persist($user); // The user must be persisted before the mail.
+$em->persist($user); // The user must be persisted before the mail (if it's a welcome mail).
 $em->persist($mail);
 $em->flush();
 ```
