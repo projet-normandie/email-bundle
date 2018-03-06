@@ -17,12 +17,12 @@ class EmailController extends Controller
      *
      * @param \ProjetNormandie\EmailBundle\Entity\Email $email
      * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \LogicException When missing the security token.
+     * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException When missing the security token.
      */
     public function showAction(Email $email)
     {
         if ($email->getTarget()->getId() !== $this->getUser()->getUserId()) {
-            return new AccessDeniedException();
+            throw new AccessDeniedException();
         }
 
         return $this->render('ProjetNormandieEmailBundle:Email:show.html.twig', ['email' => $email]);

@@ -64,7 +64,7 @@ trait DeliveryStatusesTrait
      * @param \DateTime $sentDate
      * @return $this
      */
-    public function setSentDate(\DateTime $sentDate)
+    public function setSentDate(\DateTime $sentDate = null)
     {
         $this->sentDate = $sentDate;
         return $this;
