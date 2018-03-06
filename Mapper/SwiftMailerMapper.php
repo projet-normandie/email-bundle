@@ -3,6 +3,7 @@
 namespace ProjetNormandie\EmailBundle\Mapper;
 
 use ProjetNormandie\EmailBundle\Entity\Email;
+use ProjetNormandie\EmailBundle\Infrastructure\AttachmentManager;
 
 /**
  * Mapper class upon the Swift_Mailer to send Swift_Messages.
@@ -17,22 +18,15 @@ class SwiftMailerMapper
      */
     public function fromEmail(Email $emailEntity)
     {
-        $message = new \Swift_Message();
-        $message
+        $message = (new \Swift_Message())
             ->setSubject($emailEntity->getSubject())
             ->setTo([$emailEntity->getTargetMail()])
             ->setFrom($emailEntity->getFrom())
             ->setBody($emailEntity->getBodyHtml(), 'text/html')
             ->addPart($emailEntity->getBodyText(), 'text/plain');
 
-        if (0 < count($emailEntity->getAttachments())) {
-            foreach ($emailEntity->getAttachments() as $name => $attachment) {
-                $file = \Swift_Attachment::fromPath($attachment);
-                if (!is_int($name)) {
-                    $file->setFilename($name);
-                }
-                $message->attach($file);
-            }
+        foreach ($emailEntity->getAttachments() as $name => $attachment) {
+            $message->attach(AttachmentManager::buildSwift($attachment, $name));
         }
 
         return $message;

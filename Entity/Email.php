@@ -3,6 +3,7 @@
 namespace ProjetNormandie\EmailBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use ProjetNormandie\EmailBundle\Entity\Part;
 
 /**
  * Email
@@ -12,8 +13,14 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Email
 {
-    const STATE_FAILED = 0;
-    const STATE_SUCCESS = 1;
+    // Includes the recipient and the sender mails.
+    use Part\ParticipantTrait;
+
+    // Includes the body to HTML and text format, the subject and the attachments.
+    use Part\MessageTrait;
+
+    // Includes the creation date and time, delivery status and delivery date and time.
+    use Part\DeliveryStatusesTrait;
 
     /**
      * @var integer
@@ -25,71 +32,7 @@ class Email
     private $emailId;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="emailFrom", type="string", length=255, nullable=false)
-     */
-    private $from;
-
-    /**
-     * Stored as User can change its mail address.
-     * @var string
-     *
-     * @ORM\Column(name="emailTo", type="string", length=255, nullable=false)
-     */
-    private $to;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="subject", type="string", length=255, nullable=false)
-     */
-    private $subject;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="bodyText", type="text", nullable=true)
-     */
-    private $bodyText;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="bodyHtml", type="text", nullable=false)
-     */
-    private $bodyHtml;
-
-    /**
-     * @var array
-     *
-     * @ORM\Column(name="attachments", type="json_array", nullable=true)
-     */
-    private $attachments;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="sentState", type="boolean", nullable=false)
-     */
-    private $sentState;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="sentDate", type="datetime", nullable=true)
-     */
-    private $sentDate;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="creationDate", type="datetime", nullable=false)
-     */
-    private $creationDate;
-
-    /**
-     * @var \ProjetNormandie\EmailBundle\Entity\UserInterface
+     * @var UserInterface
      *
      * @ORM\ManyToOne(targetEntity="ProjetNormandie\EmailBundle\Entity\UserInterface")
      * @ORM\JoinColumns({
@@ -103,134 +46,8 @@ class Email
      */
     public function __construct()
     {
-        $this->creationDate = new \DateTime();
-        $this->sentState = false;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSubject()
-    {
-        return $this->subject;
-    }
-
-    /**
-     * @param string $subject
-     * @return Email
-     */
-    public function setSubject($subject)
-    {
-        $this->subject = $subject;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBodyText()
-    {
-        return $this->bodyText;
-    }
-
-    /**
-     * @param string $bodyText
-     * @return Email
-     */
-    public function setBodyText($bodyText)
-    {
-        $this->bodyText = $bodyText;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBodyHtml()
-    {
-        return $this->bodyHtml;
-    }
-
-    /**
-     * @param string $bodyHtml
-     * @return Email
-     */
-    public function setBodyHtml($bodyHtml)
-    {
-        $this->bodyHtml = $bodyHtml;
-        return $this;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function isSentState()
-    {
-        return $this->sentState;
-    }
-
-    /**
-     * @param boolean $sentState
-     * @return Email
-     */
-    public function setSentState($sentState)
-    {
-        $this->sentState = $sentState;
-        return $this;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getSentDate()
-    {
-        return $this->sentDate;
-    }
-
-    /**
-     * @param \DateTime $sentDate
-     * @return Email
-     */
-    public function setSentDate($sentDate)
-    {
-        $this->sentDate = $sentDate;
-        return $this;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getCreationDate()
-    {
-        return $this->creationDate;
-    }
-
-    /**
-     * @param \DateTime $creationDate
-     * @return Email
-     */
-    public function setCreationDate($creationDate)
-    {
-        $this->creationDate = $creationDate;
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getAttachments()
-    {
-        return $this->attachments;
-    }
-
-    /**
-     * @param array $attachments
-     * @return Email
-     */
-    public function setAttachments($attachments)
-    {
-        $this->attachments = $attachments;
-        return $this;
+        $this->setCreationDate(new \DateTime())
+            ->setSentState(false);
     }
 
     /**
@@ -252,7 +69,7 @@ class Email
     }
 
     /**
-     * @return \ProjetNormandie\EmailBundle\Entity\UserInterface
+     * @return UserInterface
      */
     public function getTarget()
     {
@@ -260,48 +77,12 @@ class Email
     }
 
     /**
-     * @param \ProjetNormandie\EmailBundle\Entity\UserInterface $target
+     * @param UserInterface $target
      * @return Email
      */
-    public function setTarget($target)
+    public function setTarget(UserInterface $target)
     {
         $this->target = $target;
         return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTargetMail()
-    {
-        return $this->to;
-    }
-
-    /**
-     * @param string $targetMail
-     * @return Email
-     */
-    public function setTargetMail($targetMail)
-    {
-        $this->to = $targetMail;
-        return $this;
-    }
-
-    /**
-     * @param mixed $from
-     * @return Email
-     */
-    public function setFrom($from)
-    {
-        $this->from = $from;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFrom()
-    {
-        return $this->from;
     }
 }

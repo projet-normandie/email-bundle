@@ -21,14 +21,10 @@ class EmailController extends Controller
      */
     public function showAction(Email $email)
     {
-        $user = $this->getUser();
-        if ($email->getTarget()->getId() !== $user->getUserId()) {
+        if ($email->getTarget()->getId() !== $this->getUser()->getUserId()) {
             return new AccessDeniedException();
         }
 
-        return $this->render(
-            'ProjetNormandieEmailBundle:Email:show.html.twig',
-            ['email' => $email]
-        );
+        return $this->render('ProjetNormandieEmailBundle:Email:show.html.twig', ['email' => $email]);
     }
 }

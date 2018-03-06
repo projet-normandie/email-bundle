@@ -42,13 +42,13 @@ class Mailer
         }
         $message = $this->mapper->fromEmail($email);
 
+        // Try to send the mail.
         $state = $this->mailer->send($message);
 
-        if (\Swift_Events_SendEvent::RESULT_SUCCESS === $state) {
-            $email
-                ->setSentState(true)
-                ->setSentDate(new \DateTime());
-        }
+        $deliveryStatus = (\Swift_Events_SendEvent::RESULT_SUCCESS === $state);
+
+        $email->setSentState($deliveryStatus)
+            ->setSentDate($deliveryStatus ? new \DateTime() : null);
 
         return $email;
     }
