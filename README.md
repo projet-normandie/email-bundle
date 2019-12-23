@@ -1,6 +1,14 @@
 ProjetNormandieEmailBundle
 =========================
 
+Master
+------
+
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/projet-normandie/EmailBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/projet-normandie/EmailBundle/?branch=master)
+
+Develop
+-------
+
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/projet-normandie/EmailBundle/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/projet-normandie/EmailBundle/?branch=develop)
 
 Installation
