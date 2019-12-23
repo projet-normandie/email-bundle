@@ -5,13 +5,11 @@ Master
 ------
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/projet-normandie/EmailBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/projet-normandie/EmailBundle/?branch=master)
-[![Build Status](https://travis-ci.org/projet-normandie/EmailBundle.svg?branch=master)](https://travis-ci.org/projet-normandie/EmailBundle)
 
 Develop
 -------
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/projet-normandie/EmailBundle/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/projet-normandie/EmailBundle/?branch=develop)
-[![Build Status](https://travis-ci.org/projet-normandie/EmailBundle.svg?branch=develop)](https://travis-ci.org/projet-normandie/EmailBundle)
 
 Installation
 ============
