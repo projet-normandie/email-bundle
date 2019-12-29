@@ -22,8 +22,7 @@ class SwiftMailerMapper
             ->setSubject($emailEntity->getSubject())
             ->setTo([$emailEntity->getTargetMail()])
             ->setFrom($emailEntity->getFrom())
-            ->setBody($emailEntity->getBodyHtml(), 'text/html')
-            ->addPart($emailEntity->getBodyText(), 'text/plain');
+            ->setBody($emailEntity->getBodyHtml());
 
         foreach ($emailEntity->getAttachments() as $name => $attachment) {
             $message->attach(AttachmentManager::buildSwift($attachment, $name));
