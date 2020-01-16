@@ -25,21 +25,21 @@ class Email
     /**
      * @var integer
      *
-     * @ORM\Column(name="emailId", type="integer")
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $emailId;
+    private $id;
 
     /**
      * @var UserInterface
      *
      * @ORM\ManyToOne(targetEntity="ProjetNormandie\EmailBundle\Entity\UserInterface")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="target", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="idUser", referencedColumnName="id")
      * })
      */
-    private $target;
+    private $user;
 
     /**
      * Email Constructor.
@@ -53,36 +53,36 @@ class Email
     /**
      * @return int
      */
-    public function getEmailId()
+    public function getId()
     {
-        return $this->emailId;
+        return $this->id;
     }
 
     /**
      * @param int $emailId
      * @return Email
      */
-    public function setEmailId($emailId)
+    public function setId($id)
     {
-        $this->emailId = $emailId;
+        $this->id = $id;
         return $this;
     }
 
     /**
      * @return UserInterface
      */
-    public function getTarget()
+    public function getUser()
     {
-        return $this->target;
+        return $this->user;
     }
 
     /**
-     * @param UserInterface $target
+     * @param UserInterface $user
      * @return Email
      */
-    public function setTarget(UserInterface $target)
+    public function setUser(UserInterface $user)
     {
-        $this->target = $target;
+        $this->user = $user;
         return $this;
     }
 }
