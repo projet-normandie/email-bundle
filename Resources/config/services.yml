@@ -11,7 +11,6 @@ services:
     projet_normandie_email.swiftmailer.mapper:
         public: true
         class: ProjetNormandie\EmailBundle\Mapper\SwiftMailerMapper
-    projet_normandie_email.mailer:
-        public: true
+    ProjetNormandie\EmailBundle\Service\Mailer:
         class: ProjetNormandie\EmailBundle\Service\Mailer
         arguments: ["@swiftmailer.mailer.default", "@projet_normandie_email.swiftmailer.mapper", "%projetnormandie_email.from%"]

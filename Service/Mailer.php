@@ -22,7 +22,7 @@ class Mailer
      * @param \ProjetNormandie\EmailBundle\Mapper\SwiftMailerMapper $mapper
      * @param string $from
      */
-    public function __construct(\Swift_Mailer $mailer, SwiftMailerMapper $mapper, $from)
+    public function __construct(\Swift_Mailer $mailer, SwiftMailerMapper $mapper, $from = '')
     {
         $this->mailer = $mailer;
         $this->mapper = $mapper;
