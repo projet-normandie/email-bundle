@@ -3,14 +3,14 @@
 namespace ProjetNormandie\EmailBundle\Controller;
 
 use ProjetNormandie\EmailBundle\Entity\Email;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * Controller used to manage email contents in the public part of the site.
  */
-class EmailController extends Controller
+class EmailController extends AbstractController
 {
     /**
      * @Route("/{emailId}", name="email_display")
