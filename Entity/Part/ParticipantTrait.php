@@ -38,7 +38,7 @@ trait ParticipantTrait
      * @param string $targetMail
      * @return $this
      */
-    public function setTargetMail($targetMail)
+    public function setTargetMail(string $targetMail)
     {
         $this->to = $targetMail;
         return $this;

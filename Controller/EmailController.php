@@ -2,29 +2,11 @@
 
 namespace ProjetNormandie\EmailBundle\Controller;
 
-use ProjetNormandie\EmailBundle\Entity\Email;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * Controller used to manage email contents in the public part of the site.
  */
 class EmailController extends AbstractController
 {
-    /**
-     * @Route("/{emailId}", name="email_display")
-     *
-     * @param \ProjetNormandie\EmailBundle\Entity\Email $email
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException When missing the security token.
-     */
-    public function showAction(Email $email)
-    {
-        if ($email->getTarget()->getId() !== $this->getUser()->getUserId()) {
-            throw new AccessDeniedException();
-        }
-
-        return $this->render('ProjetNormandieEmailBundle:Email:show.html.twig', ['email' => $email]);
-    }
 }

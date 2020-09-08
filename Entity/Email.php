@@ -4,6 +4,7 @@ namespace ProjetNormandie\EmailBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use ProjetNormandie\EmailBundle\Entity\Part;
+use DateTime;
 
 /**
  * Email
@@ -46,7 +47,7 @@ class Email
      */
     public function __construct()
     {
-        $this->setCreationDate(new \DateTime())
+        $this->setCreationDate(new DateTime())
             ->setSentState(false);
     }
 
@@ -59,10 +60,10 @@ class Email
     }
 
     /**
-     * @param int $emailId
+     * @param int $id
      * @return Email
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
         return $this;

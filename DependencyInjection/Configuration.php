@@ -13,15 +13,13 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 class Configuration implements ConfigurationInterface
 {
     /**
-     * {@inheritdoc}
-     * @throws \RuntimeException When the node type is not supported.
+     * @return TreeBuilder
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('projet_normandie_email');
+        $treeBuilder = new TreeBuilder('projet_normandie_email');
+        $rootNode = $treeBuilder->getRootNode();
 
-        /** @noinspection NullPointerExceptionInspection This is standard definition. */
         $rootNode
             ->children()
                 ->scalarNode('from')->isRequired()->end()

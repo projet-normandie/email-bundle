@@ -3,6 +3,7 @@
 namespace ProjetNormandie\EmailBundle\Entity\Part;
 
 use Doctrine\ORM\Mapping as ORM;
+use DateTime;
 
 /**
  * Trait that is representing all statuses of the main object, including management of creations and deliveries.
@@ -17,14 +18,14 @@ trait DeliveryStatusesTrait
     private $sentState;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      *
      * @ORM\Column(name="sentDate", type="datetime", nullable=true)
      */
     private $sentDate;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      *
      * @ORM\Column(name="creationDate", type="datetime", nullable=false)
      */
@@ -44,7 +45,7 @@ trait DeliveryStatusesTrait
      * @param boolean $sentState
      * @return $this
      */
-    public function setSentState($sentState)
+    public function setSentState(bool $sentState)
     {
         $this->sentState = $sentState;
         return $this;
@@ -52,7 +53,7 @@ trait DeliveryStatusesTrait
 
     /**
      * Get the date and time when the message has been sent.
-     * @return \DateTime
+     * @return DateTime
      */
     public function getSentDate()
     {
@@ -61,10 +62,10 @@ trait DeliveryStatusesTrait
 
     /**
      * Set the date and time when the message has been sent.
-     * @param \DateTime $sentDate
+     * @param DateTime|null $sentDate
      * @return $this
      */
-    public function setSentDate(\DateTime $sentDate = null)
+    public function setSentDate(DateTime $sentDate = null)
     {
         $this->sentDate = $sentDate;
         return $this;
@@ -72,7 +73,7 @@ trait DeliveryStatusesTrait
 
     /**
      * Get the date and time when the message has been created.
-     * @return \DateTime
+     * @return DateTime
      */
     public function getCreationDate()
     {
@@ -81,10 +82,10 @@ trait DeliveryStatusesTrait
 
     /**
      * Set the date and time when the message has been created.
-     * @param \DateTime $creationDate
+     * @param DateTime $creationDate
      * @return $this
      */
-    public function setCreationDate(\DateTime $creationDate)
+    public function setCreationDate(DateTime $creationDate)
     {
         $this->creationDate = $creationDate;
         return $this;
