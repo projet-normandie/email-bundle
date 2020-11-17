@@ -51,7 +51,7 @@ trait MessageTrait
      * @param string $subject
      * @return $this
      */
-    public function setSubject($subject)
+    public function setSubject(string $subject)
     {
         $this->subject = $subject;
         return $this;
@@ -71,7 +71,7 @@ trait MessageTrait
      * @param string $bodyText
      * @return $this
      */
-    public function setBodyText($bodyText)
+    public function setBodyText(string $bodyText)
     {
         $this->bodyText = $bodyText;
         return $this;
@@ -91,7 +91,7 @@ trait MessageTrait
      * @param string $bodyHtml
      * @return $this
      */
-    public function setBodyHtml($bodyHtml)
+    public function setBodyHtml(string $bodyHtml)
     {
         $this->bodyHtml = $bodyHtml;
         return $this;
