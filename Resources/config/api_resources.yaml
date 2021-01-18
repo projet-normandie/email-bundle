@@ -1,0 +1,24 @@
+resources:
+    ProjetNormandie\EmailBundle\Entity\Email:
+        collectionOperations:
+            send:
+                method: 'POST'
+                path: '/emails/send'
+                swagger_context:
+                    parameters:
+                        -   in: body
+                            name: email
+                            schema:
+                                type: object
+                                required:
+                                    - email
+                                    - object
+                                    - message
+                                properties:
+                                    username:
+                                        type: string
+                                    object:
+                                        type: string
+                                    message:
+                                        type: string
+                controller: 'ProjetNormandie\EmailBundle\Controller\EmailController::send'
