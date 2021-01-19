@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use ProjetNormandie\EmailBundle\Entity\Email;
 use ProjetNormandie\EmailBundle\Service\Mailer;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Controller used to manage email contents in the public part of the site.
@@ -19,9 +20,10 @@ class EmailController extends AbstractController
     /**
      * @param Mailer                   $mailer
      */
-    public function __construct(Mailer $mailer)
+    public function __construct(Mailer $mailer, TranslatorInterface $translator)
     {
         $this->mailer = $mailer;
+        $this->translator = $translator;
     }
 
     /**
@@ -49,7 +51,7 @@ class EmailController extends AbstractController
 
         return $this->getResponse(
             true,
-            'OK'
+            $this->translator->trans('email.success')
         );
     }
 
