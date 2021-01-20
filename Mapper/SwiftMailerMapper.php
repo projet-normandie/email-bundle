@@ -19,16 +19,10 @@ class SwiftMailerMapper
      */
     public function fromEmail(Email $emailEntity)
     {
-        $message = (new Swift_Message())
+        return  (new Swift_Message())
             ->setSubject($emailEntity->getSubject())
             ->setTo([$emailEntity->getTargetMail()])
             ->setFrom($emailEntity->getFrom())
             ->setBody($emailEntity->getBodyHtml());
-
-        foreach ($emailEntity->getAttachments() as $name => $attachment) {
-            $message->attach(AttachmentManager::buildSwift($attachment, $name));
-        }
-
-        return $message;
     }
 }

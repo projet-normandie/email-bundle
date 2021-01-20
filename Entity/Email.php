@@ -4,7 +4,8 @@ namespace ProjetNormandie\EmailBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use ProjetNormandie\EmailBundle\Entity\Part;
-use DateTime;
+use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
+use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
 
 /**
  * Email
@@ -12,16 +13,16 @@ use DateTime;
  * @ORM\Table(name="email")
  * @ORM\Entity
  */
-class Email
+class Email implements TimestampableInterface
 {
+    use TimestampableTrait;
+
     // Includes the recipient and the sender mails.
     use Part\ParticipantTrait;
 
     // Includes the body to HTML and text format, the subject and the attachments.
     use Part\MessageTrait;
 
-    // Includes the creation date and time, delivery status and delivery date and time.
-    use Part\DeliveryStatusesTrait;
 
     /**
      * @var integer
@@ -33,22 +34,10 @@ class Email
     private $id;
 
     /**
-     * @var UserInterface
-     *
-     * @ORM\ManyToOne(targetEntity="ProjetNormandie\EmailBundle\Entity\UserInterface")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idUser", referencedColumnName="id")
-     * })
-     */
-    private $user;
-
-    /**
      * Email Constructor.
      */
     public function __construct()
     {
-        $this->setCreationDate(new DateTime())
-            ->setSentState(false);
     }
 
     /**
@@ -66,24 +55,6 @@ class Email
     public function setId(int $id)
     {
         $this->id = $id;
-        return $this;
-    }
-
-    /**
-     * @return UserInterface
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     * @param UserInterface $user
-     * @return Email
-     */
-    public function setUser(UserInterface $user)
-    {
-        $this->user = $user;
         return $this;
     }
 }
