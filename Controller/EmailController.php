@@ -5,7 +5,6 @@ namespace ProjetNormandie\EmailBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-use ProjetNormandie\EmailBundle\Entity\Email;
 use ProjetNormandie\EmailBundle\Service\Mailer;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -16,9 +15,12 @@ class EmailController extends AbstractController
 {
 
     private $mailer;
+    private $translator;
 
     /**
-     * @param Mailer                   $mailer
+     * EmailController constructor.
+     * @param Mailer              $mailer
+     * @param TranslatorInterface $translator
      */
     public function __construct(Mailer $mailer, TranslatorInterface $translator)
     {
@@ -34,19 +36,13 @@ class EmailController extends AbstractController
     public function send(Request $request)
     {
         $data = json_decode($request->getContent(), true);
-        $email = $data['email'];
-        $subject = $data['subject'];
-        $message = $data['message'];
 
-        $mail = new Email();
-        $mail
-            ->setFrom($email)
-            ->setTargetMail($this->getParameter('projetnormandie_email.to') )
-            ->setSubject($subject)
-            ->setBodyHtml($message)
-            ->setBodyText($message);
-
-        $this->mailer->send($mail);
+        $this->mailer->send(
+            $this->getParameter('projetnormandie_email.to'),
+            $data['subject'],
+            $data['message'],
+            $data['email']
+        );
 
 
         return $this->getResponse(

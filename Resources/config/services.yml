@@ -13,4 +13,9 @@ services:
         class: ProjetNormandie\EmailBundle\Mapper\SwiftMailerMapper
     ProjetNormandie\EmailBundle\Service\Mailer:
         class: ProjetNormandie\EmailBundle\Service\Mailer
-        arguments: ["@swiftmailer.mailer.default", "@projet_normandie_email.swiftmailer.mapper", "%projetnormandie_email.from%"]
+        arguments: [
+            "@swiftmailer.mailer.default",
+            "@projet_normandie_email.swiftmailer.mapper",
+            "@=service('doctrine.orm.default_entity_manager')",
+            "%projetnormandie_email.from%"
+            ]

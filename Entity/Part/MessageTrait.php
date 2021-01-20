@@ -5,7 +5,7 @@ namespace ProjetNormandie\EmailBundle\Entity\Part;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Trait that is representing all that represent a message (subject, bodies, attachments, ...).
+ * Trait that is representing all that represent a message (subject, bodies ...).
  */
 trait MessageTrait
 {
@@ -29,13 +29,6 @@ trait MessageTrait
      * @ORM\Column(name="bodyHtml", type="text", nullable=false)
      */
     private $bodyHtml;
-
-    /**
-     * @var array
-     *
-     * @ORM\Column(name="attachments", type="json_array", nullable=true)
-     */
-    private $attachments = [];
 
     /**
      * Get the subject of the message.
@@ -94,26 +87,6 @@ trait MessageTrait
     public function setBodyHtml(string $bodyHtml)
     {
         $this->bodyHtml = $bodyHtml;
-        return $this;
-    }
-
-    /**
-     * Get the attachments.
-     * @return array
-     */
-    public function getAttachments()
-    {
-        return $this->attachments;
-    }
-
-    /**
-     * Set the attachments. For a better usage, please send an associative array where keys are recipient file names.
-     * @param array $attachments
-     * @return $this
-     */
-    public function setAttachments(array $attachments)
-    {
-        $this->attachments = $attachments;
         return $this;
     }
 }
