@@ -38,9 +38,9 @@ class EmailController extends AbstractController
         $data = json_decode($request->getContent(), true);
 
         $this->mailer->send(
-            $this->getParameter('projetnormandie_email.to'),
             $data['subject'],
             $data['message'],
+            $this->getParameter('projetnormandie_email.to'),
             $data['email']
         );
 

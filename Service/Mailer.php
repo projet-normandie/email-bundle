@@ -20,6 +20,8 @@ class Mailer
     protected $mapper;
     /** @var string */
     protected $from;
+    /** @var string */
+    protected $to;
     /** @var EntityManagerInterface */
     private $em;
 
@@ -30,29 +32,36 @@ class Mailer
      * @param SwiftMailerMapper      $mapper
      * @param EntityManagerInterface $em
      * @param string                 $from
+     * @param string                 $to
      */
-    public function __construct(Swift_Mailer $mailer, SwiftMailerMapper $mapper, EntityManagerInterface $em, $from = '')
+    public function __construct(Swift_Mailer $mailer, SwiftMailerMapper $mapper, EntityManagerInterface $em, $from = '', $to = '')
     {
         $this->mailer = $mailer;
         $this->mapper = $mapper;
         $this->em = $em;
         $this->from = $from;
+        $this->to = $to;
     }
 
     /**
-     * @param String      $to
      * @param String      $subject
      * @param String      $body
+     * @param String|null $to
      * @param String|null $from
      * @return mixed
      */
-    public function send(String $to, String $subject, String $body, String $from = null)
+    public function send(String $subject, String $body, String $to = null, String $from = null)
     {
         $entity = new Email();
-        $entity->setTargetMail($to);
         $entity->setSubject($subject);
         $entity->setBodyHtml($body);
         $entity->setBodyText($body);
+
+        if (null === $to) {
+            $entity->setTargetMail($this->to);
+        } else {
+            $entity->setTargetMail($to);
+        }
 
         if (null === $from) {
             $entity->setFrom($this->from);

@@ -17,5 +17,6 @@ services:
             "@swiftmailer.mailer.default",
             "@projet_normandie_email.swiftmailer.mapper",
             "@=service('doctrine.orm.default_entity_manager')",
-            "%projetnormandie_email.from%"
+            "%projetnormandie_email.from%",
+            "%projetnormandie_email.to%"
             ]
