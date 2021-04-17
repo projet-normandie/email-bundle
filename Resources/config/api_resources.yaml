@@ -1,6 +1,7 @@
 resources:
     ProjetNormandie\EmailBundle\Entity\Email:
         collectionOperations:
+            get: ~
             send:
                 method: 'POST'
                 path: '/emails/send'
@@ -22,3 +23,5 @@ resources:
                                     message:
                                         type: string
                 controller: 'ProjetNormandie\EmailBundle\Controller\EmailController::send'
+        itemOperations:
+            get: ~
