@@ -3,7 +3,6 @@
 namespace ProjetNormandie\EmailBundle\Mapper;
 
 use ProjetNormandie\EmailBundle\Entity\Email;
-use ProjetNormandie\EmailBundle\Infrastructure\AttachmentManager;
 use Swift_Message;
 
 /**
@@ -22,7 +21,7 @@ class SwiftMailerMapper
         return  (new Swift_Message())
             ->setSubject($emailEntity->getSubject())
             ->setTo([$emailEntity->getTargetMail()])
-            ->setFrom($emailEntity->getFrom())
+            ->setReplyTo($emailEntity->getFrom())
             ->setBody($emailEntity->getBodyHtml());
     }
 }

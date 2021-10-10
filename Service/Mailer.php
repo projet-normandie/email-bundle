@@ -46,33 +46,26 @@ class Mailer
     /**
      * @param String      $subject
      * @param String      $body
-     * @param String|null $to
      * @param String|null $from
+     * @param String|null $to
+     * @param String|null $replyTo
      * @return mixed
      */
-    public function send(String $subject, String $body, String $to = null, String $from = null)
+    public function send(String $subject, String $body, String $from = null, String $to = null, String $replyTo = null)
     {
         $entity = new Email();
         $entity->setSubject($subject);
         $entity->setBodyHtml($body);
         $entity->setBodyText($body);
+        $entity->setTargetMail($to);
+        $entity->setFrom($replyTo);
 
-        if (null === $to) {
-            $entity->setTargetMail($this->to);
-        } else {
-            $entity->setTargetMail($to);
-        }
-
-        if (null === $from) {
-            $entity->setFrom($this->from);
-        } else {
-            $entity->setFrom($from);
-        }
 
         $this->em->persist($entity);
         $this->em->flush();
 
         $message = $this->mapper->fromEmail($entity);
+        $message->setFrom($from);
 
         // Try to send the mail.
         $state = $this->mailer->send($message);
