@@ -8,6 +8,9 @@ use Symfony\Component\HttpFoundation\Request;
 use ProjetNormandie\EmailBundle\Service\Mailer;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+use Aws\Ses\SesClient;
+use Aws\Exception\AwsException;
+
 /**
  * Controller used to manage email contents in the public part of the site.
  */
@@ -40,6 +43,7 @@ class EmailController extends AbstractController
         $this->mailer->send(
             $data['subject'],
             $data['message'],
+            $this->getParameter('projetnormandie_email.from'),
             $this->getParameter('projetnormandie_email.to'),
             $data['email']
         );
