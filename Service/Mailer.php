@@ -58,14 +58,23 @@ class Mailer
         $entity->setBodyHtml($body);
         $entity->setBodyText($body);
         $entity->setTargetMail($to);
-        $entity->setFrom($replyTo);
+        if ($replyTo !== null) {
+            $entity->setFrom($replyTo);
+        } else {
+            $entity->setFrom($this->from);
+        }
 
 
         $this->em->persist($entity);
         $this->em->flush();
 
         $message = $this->mapper->fromEmail($entity);
-        $message->setFrom($from);
+        if ($from !== null) {
+            $message->setFrom($from);
+        } else {
+            $message->setFrom($this->from);
+        }
+
 
         // Try to send the mail.
         $state = $this->mailer->send($message);
