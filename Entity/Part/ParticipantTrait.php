@@ -10,25 +10,20 @@ use Doctrine\ORM\Mapping as ORM;
 trait ParticipantTrait
 {
     /**
-     * @var string
-     *
      * @ORM\Column(name="emailFrom", type="string", length=255, nullable=false)
      */
-    private $from;
+    private string $from;
 
     /**
-     * Stored as User can change its mail address.
-     * @var string
-     *
      * @ORM\Column(name="emailTo", type="string", length=255, nullable=false)
      */
-    private $to;
+    private string $to;
 
     /**
      * Get the recipient mail.
      * @return string
      */
-    public function getTargetMail()
+    public function getTargetMail(): string
     {
         return $this->to;
     }
@@ -38,7 +33,7 @@ trait ParticipantTrait
      * @param string $targetMail
      * @return $this
      */
-    public function setTargetMail(string $targetMail)
+    public function setTargetMail(string $targetMail): self
     {
         $this->to = $targetMail;
         return $this;
@@ -46,9 +41,9 @@ trait ParticipantTrait
 
     /**
      * Get the sender mail.
-     * @return mixed
+     * @return string
      */
-    public function getFrom()
+    public function getFrom(): string
     {
         return $this->from;
     }
@@ -58,7 +53,7 @@ trait ParticipantTrait
      * @param mixed $from
      * @return $this
      */
-    public function setFrom($from)
+    public function setFrom($from): self
     {
         $this->from = $from;
         return $this;

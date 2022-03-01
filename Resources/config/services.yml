@@ -8,15 +8,3 @@ services:
     ProjetNormandie\EmailBundle\:
         resource: '../../*'
         exclude: '../../{Admin,DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
-    projet_normandie_email.swiftmailer.mapper:
-        public: true
-        class: ProjetNormandie\EmailBundle\Mapper\SwiftMailerMapper
-    ProjetNormandie\EmailBundle\Service\Mailer:
-        class: ProjetNormandie\EmailBundle\Service\Mailer
-        arguments: [
-            "@swiftmailer.mailer.default",
-            "@projet_normandie_email.swiftmailer.mapper",
-            "@=service('doctrine.orm.default_entity_manager')",
-            "%projetnormandie_email.from%",
-            "%projetnormandie_email.to%"
-            ]

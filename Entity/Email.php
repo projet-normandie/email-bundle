@@ -25,13 +25,11 @@ class Email implements TimestampableInterface
 
 
     /**
-     * @var integer
-     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    private ?int $id = null;
 
     /**
      * Email Constructor.
@@ -43,7 +41,7 @@ class Email implements TimestampableInterface
     /**
      * @return int
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -52,7 +50,7 @@ class Email implements TimestampableInterface
      * @param int $id
      * @return Email
      */
-    public function setId(int $id)
+    public function setId(int $id): Email
     {
         $this->id = $id;
         return $this;
