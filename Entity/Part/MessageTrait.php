@@ -10,31 +10,25 @@ use Doctrine\ORM\Mapping as ORM;
 trait MessageTrait
 {
     /**
-     * @var string
-     *
      * @ORM\Column(name="subject", type="string", length=255, nullable=false)
      */
-    private $subject;
+    private string $subject;
 
     /**
-     * @var string
-     *
      * @ORM\Column(name="bodyText", type="text", nullable=true)
      */
-    private $bodyText;
+    private string $bodyText;
 
     /**
-     * @var string
-     *
      * @ORM\Column(name="bodyHtml", type="text", nullable=false)
      */
-    private $bodyHtml;
+    private string $bodyHtml;
 
     /**
      * Get the subject of the message.
      * @return string
      */
-    public function getSubject()
+    public function getSubject(): string
     {
         return $this->subject;
     }
@@ -44,7 +38,7 @@ trait MessageTrait
      * @param string $subject
      * @return $this
      */
-    public function setSubject(string $subject)
+    public function setSubject(string $subject): self
     {
         $this->subject = $subject;
         return $this;
@@ -54,7 +48,7 @@ trait MessageTrait
      * Get the body of the message, in text format.
      * @return string
      */
-    public function getBodyText()
+    public function getBodyText(): string
     {
         return $this->bodyText;
     }
@@ -64,7 +58,7 @@ trait MessageTrait
      * @param string $bodyText
      * @return $this
      */
-    public function setBodyText(string $bodyText)
+    public function setBodyText(string $bodyText): self
     {
         $this->bodyText = $bodyText;
         return $this;
@@ -74,7 +68,7 @@ trait MessageTrait
      * Get the body of the message, in HTML format.
      * @return string
      */
-    public function getBodyHtml()
+    public function getBodyHtml(): string
     {
         return $this->bodyHtml;
     }
@@ -84,7 +78,7 @@ trait MessageTrait
      * @param string $bodyHtml
      * @return $this
      */
-    public function setBodyHtml(string $bodyHtml)
+    public function setBodyHtml(string $bodyHtml): self
     {
         $this->bodyHtml = $bodyHtml;
         return $this;
