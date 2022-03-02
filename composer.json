@@ -14,11 +14,10 @@
     "php": ">=7.4",
     "doctrine/orm": "^2.5",
     "doctrine/doctrine-bundle": "~2.0",
-    "symfony/validator": "^4.4",
-    "symfony/framework-bundle": "^4.4",
-    "symfony/security-bundle": "^4.4",
-    "symfony/twig-bundle": "^4.4",
-    "symfony/mailer": "^4.4"
+    "symfony/validator": "^4.4 || ^5.1",
+    "symfony/framework-bundle": "^4.4 || ^5.1",
+    "symfony/twig-bundle": "^4.4 || ^5.1",
+    "symfony/mailer": "^4.4 || ^5.1"
   },
   "autoload": {
     "psr-4": { "ProjetNormandie\\EmailBundle\\": "" }

@@ -47,8 +47,8 @@ class Mailer
 
         if ($from !== null) {
             $email->replyTo($from);
-            //$email->from($from);
         }
+        $email->from($_ENV['MAILER_FROM']);
 
         if (null !== $to) {
             $email->to($to);

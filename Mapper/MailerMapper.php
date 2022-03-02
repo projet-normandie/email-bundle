@@ -15,11 +15,20 @@ class MailerMapper
      */
     public function fromEmail(Email $email): EmailEntity
     {
-        return  (new EmailEntity())
+        $emailEntity =  (new EmailEntity())
             ->setSubject($email->getSubject())
             ->setTargetMail($email->getTo()[0]->toString())
-            ->setFrom($email->getReplyTo()[0]->toString())
             ->setBodyText($email->getTextBody())
             ->setBodyHtml($email->getHtmlBody());
+
+        if (count($email->getFrom()) > 0) {
+            $emailEntity->setFrom($email->getFrom()[0]->toString());
+        }
+
+        if (count($email->getReplyTo()) > 0) {
+            $emailEntity->setFrom($email->getReplyTo()[0]->toString());
+        }
+
+        return $emailEntity;
     }
 }
