@@ -16,18 +16,23 @@ class Mailer
     protected MailerInterface $mailer;
     protected MailerMapper $mapper;
     private EntityManagerInterface $em;
+    private string $from;
+    private string $to;
 
     /**
-     * Mailer constructor.
      * @param MailerInterface        $mailer
      * @param MailerMapper           $mapper
      * @param EntityManagerInterface $em
+     * @param string                 $pnEmailFrom
+     * @param string                 $pnEmailTo
      */
-    public function __construct(MailerInterface $mailer, MailerMapper $mapper, EntityManagerInterface $em)
+    public function __construct(MailerInterface $mailer, MailerMapper $mapper, EntityManagerInterface $em, string $pnEmailFrom, string $pnEmailTo)
     {
         $this->mailer = $mailer;
         $this->mapper = $mapper;
         $this->em = $em;
+        $this->from = $pnEmailFrom;
+        $this->to = $pnEmailTo;
     }
 
     /**
@@ -48,12 +53,12 @@ class Mailer
         if ($from !== null) {
             $email->replyTo($from);
         }
-        $email->from($_ENV['MAILER_FROM']);
+        $email->from($this->from);
 
         if (null !== $to) {
             $email->to($to);
         } else {
-            $email->to($_ENV['MAILER_TO']);
+            $email->to($this->to);
         }
 
         $this->mailer->send($email);
