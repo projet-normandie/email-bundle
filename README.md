@@ -1,3 +1,13 @@
+ProjetNormandieEmailBundle
+===========================
+
+Develop
+-------
+
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/projet-normandie/email-bundle/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/projet-normandie/email-bundle/?branch=develop)
+[![Build Status](https://scrutinizer-ci.com/g/projet-normandie/email-bundle/badges/build.png?b=develop)]()
+
+
 Installation
 ============
 
@@ -54,7 +64,6 @@ In order to link your User entity to this module you should add the following co
 # Doctrine Configuration - config.yml
 doctrine:
     orm:
-        ...
         resolve_target_entities:
             ProjetNormandie\EmailBundle\Entity\UserInterface: AppBundle\Entity\User
 ```
@@ -68,7 +77,8 @@ The from has to be set globally.
 
 ```yaml
 projet_normandie_email:
-    from: "projetnormandie@projetnormandie.com"
+    from: "no-reply@projetnormandie.com"
+    to: "contact@projetnormandie.com"
 ```
 
 Note that the from can be overwritten when constructing the mail.
