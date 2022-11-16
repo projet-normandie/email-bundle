@@ -9,17 +9,14 @@ use ProjetNormandie\EmailBundle\Service\Mailer;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-use Aws\Ses\SesClient;
-use Aws\Exception\AwsException;
-
 /**
  * Controller used to manage email contents in the public part of the site.
  */
 class EmailController extends AbstractController
 {
 
-    private $mailer;
-    private $translator;
+    private Mailer $mailer;
+    private TranslatorInterface $translator;
 
     /**
      * EmailController constructor.
@@ -35,7 +32,6 @@ class EmailController extends AbstractController
     /**
      * @param Request $request
      * @return Response
-     * @throws Exception
      * @throws TransportExceptionInterface
      */
     public function send(Request $request): Response
@@ -50,17 +46,16 @@ class EmailController extends AbstractController
 
         );
 
-
         return $this->getResponse(
             $this->translator->trans('email.success')
         );
     }
 
     /**
-     * @param null $message
+     * @param string|null $message
      * @return Response
      */
-    private function getResponse($message = null): Response
+    private function getResponse(string $message = null): Response
     {
         $response = new Response();
         $response->headers->set('Content-Type', 'application/json');
